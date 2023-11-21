@@ -12,6 +12,6 @@ In this blog post, let's take a deeper look at how them work.
 
 ### Optimistic Locking
 
-### `@Transactional` annotation
+### @Transactional annotation
 
-### Optimistic Lock and `@Transactional` annotation
+### Optimistic Lock and @Transactional annotation
