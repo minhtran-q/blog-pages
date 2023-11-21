@@ -14,4 +14,4 @@ In this blog post, let's take a deeper look at how them work.
 
 3. `@Transactional` annotation
 
-4. Optimistic Lock and `@Transactional`
+4. Optimistic Lock and `@Transactional` annotation
