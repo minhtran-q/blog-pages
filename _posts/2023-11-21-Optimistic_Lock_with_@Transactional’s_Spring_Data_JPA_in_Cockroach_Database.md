@@ -3,7 +3,7 @@ title: "Optimistic Lock with @Transactional’s Spring Data JPA in Cockroach Dat
 date: 2023-11-21
 ---
 
-_Attention: All commands and examples below are valid for CockroachDb only. Because CockroachDb only support highest isolation level (Serializable)._
+_Attention: All commands and examples below are valid for CockroachDb only. Because CockroachDb only support the highest isolation level (Serializable)._
 
 ### Introduction
 
