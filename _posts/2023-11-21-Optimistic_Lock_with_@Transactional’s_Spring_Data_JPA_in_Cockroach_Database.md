@@ -14,7 +14,26 @@ In this blog post, let's take a deeper look at how them work.
 Optimistic locking, also known as Optimistic concurrency control (OCC) is a concurrency control method applied to transactional systems.
 Before committing, each transaction verifies that no other transaction has modified the data it has read. If the check reveals conflicting modifications, the committing transaction rolls back and can be restarted.
 
+**In JPA:**
+In order to use optimistic locking, we need to have an entity including a property with `@Version` annotation.
+If the value has changed in the meantime, an `OptimisticLockException` is thrown. Otherwise, the transaction commits the update and increments a value version property.
 
+For example:
+
+```
+@Entity
+public class Student {
+
+    @Id
+    private Long id;
+    private String name;
+    private String lastName;
+    @Version
+    private Integer version;
+
+    // getters and setters
+}
+```
 
 ### @Transactional annotation
 
