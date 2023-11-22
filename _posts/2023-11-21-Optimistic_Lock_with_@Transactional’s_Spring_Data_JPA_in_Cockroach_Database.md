@@ -37,10 +37,29 @@ public class Student {
 
 ### @Transactional annotation
 
-Each time you mark the @Transactional annotation on a method. you should remember that when you call such a method, the invocation in fact will be wrapped with a transaction handling code similar to this:
+Each time you mark the @Transactional annotation on a method.
 
--- code example
+```
+@Transactional
+public void registerAccount() {
+   // business code
+}
+```
+You should remember that when you call such a method, the invocation in fact will be wrapped with a transaction handling code similar to this:
+```
+UserTransaction userTransaction = entityManager.getTransaction();
+try {
+  // begin a new transaction
+   userTransaction.begin(); 
 
+   registerAccount(); // the actual method invocation
+
+   userTransaction.commit();
+} catch(RuntimeException e) {
+   userTransaction.rollback(); // initiate rollback if business code fails
+   throw e;
+}
+```
 Each method with @Transactional will be executed in a separate transaction. It also means that each SQL statement will be executed in a separate transaction.
 In case you have to update multiple tables or avoid LazyLoadException. You will have to mark a @Transactional outside a wrapper method. Now you will have all SQL statements executed in a single transaction.
 
