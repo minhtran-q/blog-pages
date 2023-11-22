@@ -61,6 +61,20 @@ try {
 }
 ```
 Each method with @Transactional will be executed in a separate transaction. It also means that each SQL statement will be executed in a separate transaction.
+
 In case you have to update multiple tables or avoid LazyLoadException. You will have to mark a @Transactional outside a wrapper method. Now you will have all SQL statements executed in a single transaction.
+
+_Example:_
+```
+@Transactional
+public void changeStatus(long id, String status) {
+  Account account = accountRepository.findById(id);
+  account.setStatus(status);
+  accountRepository.save(account);
+}
+```
+In this example, we have two queries that will be executed against the database. And since we have marked `@Transactional` on this method, those queries will be executed in _one_ transaction.
+
+Now we have two ways to use @Transactional annotation. And how they work with Optismick Lock mechanism?
 
 ### Optimistic Lock and @Transactional annotation
